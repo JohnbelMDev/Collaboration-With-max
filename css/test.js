@@ -2,12 +2,17 @@
 const fs = require('fs');
 var XMLHttpRequest = require('xhr2');
 var xhr = new XMLHttpRequest();
+const bodyParser= require('body-parser')
+
+
+
 let holdFileContent
 let array
 const express = require('express');
 const { log } = require('console');
 const app = express()
 const port = 3000
+app.use(bodyParser.urlencoded({extended:true}))
 
 app.get('/', (req, res) => {
     res.sendFile('index.html', {root: __dirname })
@@ -49,11 +54,16 @@ app.get('/fileSize', (req, res) => {
 
 })
 
+
+
 app.get('/check', (req, res) => {
    // returns true if online, false if offline
    
    var xhr = new XMLHttpRequest();
-    var file = "https://github.com/JohnbelMDev";
+    // var file = "https://github.com/JohnbelMDev";
+
+    var file = req.query.internet;
+    console.log("hello",req.query.internet);
     var randomNum = Math.round(Math.random() * 10000);
 
     xhr.open('HEAD', file + "?rand=" + randomNum, true);
