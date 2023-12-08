@@ -2,7 +2,7 @@
 const fs = require('fs');
 var XMLHttpRequest = require('xhr2');
 var xhr = new XMLHttpRequest();
-const bodyParser= require('body-parser')
+// const bodyParser= require('body-parser')
 
 
 
@@ -12,7 +12,7 @@ const express = require('express');
 const { log } = require('console');
 const app = express()
 const port = 3000
-app.use(bodyParser.urlencoded({extended:true}))
+// app.use(bodyParser.urlencoded({extended:true}))
 
 app.get('/', (req, res) => {
     res.sendFile('index.html', {root: __dirname })
@@ -61,11 +61,16 @@ app.get('/check', (req, res) => {
    
    var xhr = new XMLHttpRequest();
     // var file = "https://github.com/JohnbelMDev";
-
+// console.log("hello",xhr)
     var file = req.query.internet;
     console.log("hello",req.query.internet);
     var randomNum = Math.round(Math.random() * 10000);
-
+    let replaceAllCharacterInString =  file.replace(/[^a-zA-Z ]/g, " ")
+    //Remove all empty 
+    console.log(replaceAllCharacterInString.split(' ').join())
+    //   if(!(file.includes('http') || file.includes('https'))){
+    //     res.send('not valid protocol')
+    //   }
     xhr.open('HEAD', file + "?rand=" + randomNum, true);
     xhr.send();
     
