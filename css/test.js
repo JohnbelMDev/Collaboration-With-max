@@ -63,11 +63,19 @@ app.get('/check', (req, res) => {
     // var file = "https://github.com/JohnbelMDev";
 // console.log("hello",xhr)
     var file = req.query.internet;
-    console.log("hello",req.query.internet);
     var randomNum = Math.round(Math.random() * 10000);
     let replaceAllCharacterInString =  file.replace(/[^a-zA-Z ]/g, " ")
+    let removeComma = replaceAllCharacterInString.split(',').join('')
+    let stringToArray = removeComma.split(' ')
+    let removeEmptyelemtFromArray = stringToArray.filter(elm => elm)
+    if(!(removeEmptyelemtFromArray[0].includes('http') ||removeEmptyelemtFromArray[0].includes('https'))){
+        console.log('does')
+    }
+    else{
     //Remove all empty 
-    console.log(replaceAllCharacterInString.split(' ').join())
+     console.log(removeEmptyelemtFromArray[0])
+     
+
     //   if(!(file.includes('http') || file.includes('https'))){
     //     res.send('not valid protocol')
     //   }
@@ -85,7 +93,7 @@ app.get('/check', (req, res) => {
         }
       }
     }
-  
+}
 })
 
 app.listen(port, () => {
