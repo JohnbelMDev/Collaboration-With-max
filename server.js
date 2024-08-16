@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
 
 app.get('/updateAndREad', (req, res) => {
     let randomNumber = Math.floor(Math.random() * 100);
-    fs.readFile('textFile/file.txt', (err, inputD) => {
+    fs.readFile('file.inputFrom().txt', (err, inputD) => {
         if (err) throw err;
          array = inputD.toString().split(' ')
         //  console.log("see",array[0])
